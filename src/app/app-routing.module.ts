@@ -5,6 +5,7 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { StoryComponent } from './story/story.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TextStoryComponent } from './text-story/text-story.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'comments',
     component: CommentsComponent
+  },
+  {
+    path: 'story/:id',
+    component: TextStoryComponent
   },
   {
     path: '',

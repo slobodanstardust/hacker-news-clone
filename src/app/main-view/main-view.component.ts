@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StoryList } from '../models/story-list';
+import { StoryService } from '../services/story.service';
+
 
 @Component({
   selector: 'hnc-main-view',
@@ -8,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MainViewComponent implements OnInit {
+  bestStories: StoryList;
+  listSlices: number[][] = [];
+  page: number = 0;
 
-  constructor() { }
+  constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
+    this.storyService
+      .getBestStories()
+      .subscribe((data: StoryList) => {
+        this.bestStories = data;
+        this.cutList(this.bestStories.stories, 100);
+      });
+  }
+
+  cutList (list: number[], sliceSize: number): void {
+    for (let i = 0; i < list.length; i += sliceSize) {
+      this.listSlices.push(list.slice(i, i + sliceSize));
+    }
   }
 }
