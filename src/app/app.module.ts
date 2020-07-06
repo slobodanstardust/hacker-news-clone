@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { CommentsComponent } from './comments/comments.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StoryComponent } from './story/story.component';
 import { TextStoryComponent } from './text-story/text-story.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { CommentViewComponent } from './comment-view/comment-view.component';
 
 
 @NgModule({
@@ -24,12 +27,15 @@ import { TextStoryComponent } from './text-story/text-story.component';
     CommentsComponent,
     PageNotFoundComponent,
     StoryComponent,
-    TextStoryComponent
+    TextStoryComponent,
+    PaginationComponent,
+    CommentViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

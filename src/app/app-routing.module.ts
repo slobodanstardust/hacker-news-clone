@@ -18,7 +18,7 @@ const routes: Routes = [
     component: StoryComponent
   },
   {
-    path: 'comments',
+    path: 'comments/:id',
     component: CommentsComponent
   },
   {

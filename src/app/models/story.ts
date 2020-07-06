@@ -8,6 +8,7 @@ export class Story {
   score: number;
   commentCount: number;
   rankedCommentList: number[];
+  type: string;
 
   constructor (newStory: any) {
     this.id = newStory && newStory.id || null;
@@ -19,5 +20,6 @@ export class Story {
     this.score = newStory && newStory.score || 0;
     this.commentCount = newStory && newStory.descendants || 0;
     this.rankedCommentList = newStory && newStory.kids || [];
+    this.type = newStory && newStory.type || '';
   }
 }

@@ -1,11 +1,12 @@
 <div>
-  <p *ngIf="story?.sourceUrl; else textStory">{{ listNumber + 1 }}. <a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a></p>
+  <p *ngIf="story?.sourceUrl; else textStory">{{ storyNumber + 1 }}. <a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a></p>
   <ng-template #textStory>
-    <p>{{ listNumber + 1 }}. <a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></p>
+    <p>{{ storyNumber + 1 }}. <a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></p>
   </ng-template>
   <small>{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</small>&nbsp;|
   <small>By {{ story?.userAuthor }}</small>&nbsp;|
   <small>Time: {{ storyTimeSince }}</small>&nbsp;|
-  <small>Comments: {{ story?.commentCount }}</small>
+  <small><a routerLink="/comments/{{ story?.id }}">Comments: {{ story?.commentCount }}</a></small>&nbsp;|
+  <small>Type: {{ story?.type }}</small>
 </div>
 <hr>

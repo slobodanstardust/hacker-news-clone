@@ -1,2 +1,3 @@
-<hnc-story-preview *ngFor="let storyId of listSlices[page]; index as i" [storyId]="storyId" [listNumber]="i"></hnc-story-preview>
+<hnc-story-preview *ngFor="let storyId of pages[pagination.page]; index as i" [storyId]="storyId" [storyNumber]="i"></hnc-story-preview>
 <hnc-story-preview [storyId]="23733750"></hnc-story-preview>
+<hnc-pagination [pagination]="pagination" [pages]="pages" (pageChange)="onPageChange($event)"></hnc-pagination>

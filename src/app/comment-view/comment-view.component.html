@@ -1,0 +1,12 @@
+<div>
+  <small>Response to: {{ responseTo }}</small>&nbsp;|
+  <small>By {{ comment?.userAuthor }}</small>&nbsp;|
+  <small>Time: {{ commentTimeSince }}</small>
+  <div [innerHtml]="comment?.text"></div>
+  <small (click)="loadResponses(comment?.id)" style="cursor:pointer">Responses: {{ comment?.rankedCommentList.length }}</small>
+
+  <div *ngIf="isClicked">
+    <hnc-comment-view *ngFor="let response of responseList" [commentId]="response" [responseTo]="author"></hnc-comment-view>
+  </div>
+</div>
+<hr>

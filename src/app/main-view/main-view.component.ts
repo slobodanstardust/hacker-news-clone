@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StoryList } from '../models/story-list';
 import { StoryService } from '../services/story.service';
 
 
@@ -11,24 +10,38 @@ import { StoryService } from '../services/story.service';
 })
 
 export class MainViewComponent implements OnInit {
-  bestStories: StoryList;
-  listSlices: number[][] = [];
-  page: number = 0;
+  topStories: number[];
+  pages: number[][] = [];
+
+  pagination: { page: number, pageSize: number } = {
+    page: 0,
+    pageSize: 100,
+  }
 
   constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
     this.storyService
-      .getBestStories()
-      .subscribe((data: StoryList) => {
-        this.bestStories = data;
-        this.cutList(this.bestStories.stories, 100);
+      .getTopStories()
+      .subscribe((data: number[]) => {
+        this.topStories = data;
+        this.cutToPages(this.topStories, this.pagination.pageSize);
       });
   }
 
-  cutList (list: number[], sliceSize: number): void {
-    for (let i = 0; i < list.length; i += sliceSize) {
-      this.listSlices.push(list.slice(i, i + sliceSize));
+  cutToPages (list: number[], pageSize: number): void {
+    let tempList: number[][] = []; // Need this so I can detect change in pagination component.
+
+    for (let i = 0; i < list.length; i += pageSize) {
+      tempList.push(list.slice(i, i + pageSize));
     }
+
+    this.pages = tempList;
+  }
+
+  onPageChange (pagination: { page: number, pageSize: number }): void {
+    this.pagination = pagination
+
+    this.cutToPages(this.topStories, this.pagination.pageSize);
   }
 }
