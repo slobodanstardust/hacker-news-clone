@@ -12,11 +12,13 @@ import { StoryService } from '../services/story.service';
 
 export class StoryPreviewComponent implements OnInit {
   @Input () storyId: number;
-  @Input () storyNumber: number;
+  @Input () storyIndex: number;
+  @Input () pagination: { page: number, pageSize: number };
 
   story: Story;
   storyTimeSince: any;
   storyText: string;
+  storyNumber: number;
 
   constructor(private storyService: StoryService) { }
 
@@ -27,6 +29,7 @@ export class StoryPreviewComponent implements OnInit {
         this.story = data
         this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
         this.storyText = data.text;
+        this.storyNumber = this.storyIndex + 1 + (this.pagination?.page * this.pagination?.pageSize)
       });
   }
 }

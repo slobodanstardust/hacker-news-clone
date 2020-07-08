@@ -21,6 +21,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   previousDisabled: boolean;
   nextDisabled: boolean;
+  sizeOption: string = '100';
 
   constructor() { }
 
@@ -62,9 +63,10 @@ export class PaginationComponent implements OnInit, OnChanges {
     this.pageChange.emit(this.paginationChanges);
   }
 
-  onPageSizeChange (): void {
+  onPageSizeChange (option: string): void {
     this.paginationChanges.page = 0;
-    this.paginationChanges.pageSize = Number(this.paginationChanges.pageSize);
+    this.paginationChanges.pageSize = Number(option);
     this.pageChange.emit(this.paginationChanges);
+    this.sizeOption = option;
   }
 }

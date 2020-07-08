@@ -13,6 +13,7 @@ import { Comment } from '../models/comment';
 export class CommentViewComponent implements OnInit {
   @Input () commentId: number;
   @Input () responseTo: string;
+  @Input () isResponse: boolean;
 
   comment: Comment;
   commentTimeSince: string;
@@ -20,6 +21,7 @@ export class CommentViewComponent implements OnInit {
   author: string;
 
   isClicked: boolean = false;
+  isExpanded: boolean = false;
 
   constructor(private storyService: StoryService) { }
 
@@ -40,5 +42,9 @@ export class CommentViewComponent implements OnInit {
         this.responseList = data.rankedCommentList;
         this.isClicked = true;
       })
+  }
+
+  toggleView(): void {
+    this.isExpanded = !this.isExpanded;
   }
 }

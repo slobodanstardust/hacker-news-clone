@@ -30,7 +30,7 @@ export class CommentsComponent implements OnInit {
       .subscribe((data: Story) => {
         this.story = data;
         this.author = data.userAuthor;
-        this.storyTimeSince = this.storyService.calculateTimeSince(data.time)
+        this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
       });
   }
 

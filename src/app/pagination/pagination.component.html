@@ -1,17 +1,20 @@
-<button (click)="onPreviousPage()" [disabled]="previousDisabled">Previous page</button>
-
-<ng-container *ngFor="let page of pages; index as i">
-  <span *ngIf="pagination.page === i; else emptyField"> {{ i + 1 }} </span>
-  <ng-template #emptyField>
-    <small (click)="onPageSelect(i)" style="cursor:pointer"> {{ i + 1 }} </small>
-  </ng-template>
-</ng-container>
-
-<button (click)="onNextPage()" [disabled]="nextDisabled">Next page</button>
-&nbsp;|
-
-<label for="pageSize">Page size: </label>
-<select [(ngModel)]="paginationChanges.pageSize" name="pageSize" id="pageSize" (change)="onPageSizeChange()">
-  <option *ngFor="let option of [10, 50, 100]" [value]="option">{{ option }}</option>
-</select>
+<div class="pagination">
+  <div class="page-picker">
+    <div (click)="onPreviousPage()" [ngClass]="{'button': true, 'disabled': previousDisabled}">previous</div>
+    
+    <ng-container *ngFor="let page of pages; index as i">
+      <div class="page-number" *ngIf="pagination.page === i; else emptyField"> {{ i + 1 }} </div>
+      <ng-template #emptyField>
+        <div class="page-number page-number-clickable" (click)="onPageSelect(i)"> {{ i + 1 }} </div>
+      </ng-template>
+    </ng-container>
+    
+    <div (click)="onNextPage()" [ngClass]="{'button': true, 'disabled': nextDisabled}">next</div>
+  </div>
+  
+  <div class="size-picker">
+    <div class="size-picker-label">page size</div>
+    <div [ngClass]="{'size-option': true, 'size-option-selected': option === sizeOption}" *ngFor="let option of [10, 50, 100]" (click)="onPageSizeChange(option)">{{ option }}</div>
+  </div>
+</div>
 

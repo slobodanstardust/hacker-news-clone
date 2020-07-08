@@ -1,12 +1,16 @@
-<div>
-  <p *ngIf="story?.sourceUrl; else textStory"><a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a></p>
-  <ng-template #textStory>
-    <p><a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></p>
-  </ng-template>
-  <small>{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</small>&nbsp;|
-  <small>By {{ story?.userAuthor }}</small>&nbsp;|
-  <small>Time: {{ storyTimeSince }}</small>
-</div>
-<hr>
+<div class="flex-container">
+  <div class="edge"></div>
+  
+  <div class="story-preview">
+    <h3 *ngIf="story?.sourceUrl; else textStory"><a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a></h3>
+    <ng-template #textStory>
+      <h3><a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></h3>
+    </ng-template>
 
-<hnc-comment-view *ngFor="let comment of story.rankedCommentList" [commentId]="comment" [responseTo]="author"></hnc-comment-view>
+    <small>{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</small>&nbsp;|
+    <small>By {{ story?.userAuthor }}</small>&nbsp;|
+    <small>Time: {{ storyTimeSince }}</small>
+  </div>
+  
+  <hnc-comment-view *ngFor="let comment of story?.rankedCommentList" [commentId]="comment" [responseTo]="author" [isResponse]="false"></hnc-comment-view>
+</div>

@@ -14,6 +14,10 @@ const routes: Routes = [
     component: MainViewComponent
   },
   {
+    path: 'new',
+    component: MainViewComponent
+  },
+  {
     path: 'story',
     component: StoryComponent
   },

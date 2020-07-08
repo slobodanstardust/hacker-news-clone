@@ -26,6 +26,15 @@ export class StoryService {
       }));
   }
 
+  getNewStories (): Observable<number[]> {
+    return this.httpClient
+      .get(`${BASE_URL}/newstories.json`)
+      .pipe(map((data: any) => {
+        const stories: number[] = data;
+        return stories
+      }));
+  }
+
   getStory (storyId: number): Observable<Story> {
     return this.httpClient
       .get(`${BASE_URL}/item/${storyId}.json`)

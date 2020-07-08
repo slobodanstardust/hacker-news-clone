@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+:root {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background-color: $primary-dark;
+  padding-top: 2em;
+}
+
+h3 {
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+
+a {
+
+  &:link {
+    text-decoration: none;
+    color: $secondary-light;
+  }
+
+  &:visited {
+    color: $primary-text;
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+// It's in the global styles because I need it in the comment-view component too.
+.story-preview {
+  margin-bottom: 1em;
+  padding: 1em 3em;
+  background-color: $primary;
+  color: $primary-text;
+  box-shadow: $shadow;
+}
+
+.edge {
+  height: 2px;
+  background-color: $primary-text;
+}
+
+.active-path {
+  background-color: $secondary-dark;
+}

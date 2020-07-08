@@ -14,6 +14,7 @@ import { Story } from '../models/story';
 export class TextStoryComponent implements OnInit {
   storyId: number;
   story: Story;
+  storyTimeSince: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +27,7 @@ export class TextStoryComponent implements OnInit {
       .getStory(this.storyId)
       .subscribe((data: Story) => {
         this.story = data;
+        this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
       })
   }
 
