@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Story } from '../models/story';
+import { StoryService } from '../services/story.service';
 
 
 @Component({
@@ -8,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class StoryPreviewComponent implements OnInit {
+  @Input () storyId: number;
+  @Input () storyIndex: number;
+  @Input () pagination: { page: number, pageSize: number };
 
-  constructor() { }
+  story: Story;
+  storyTimeSince: any;
+  storyText: string;
+  storyNumber: number;
+
+  constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
+    this.storyService
+      .getStory(this.storyId)
+      .subscribe((data: Story) => {
+        this.story = data
+        this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
+        this.storyText = data.text;
+        this.storyNumber = this.storyIndex + 1 + (this.pagination?.page * this.pagination?.pageSize)
+      });
   }
 }

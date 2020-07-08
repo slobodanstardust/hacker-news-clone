@@ -1,0 +1,46 @@
+@import '../../global-styles/main.scss';
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  padding: 0 1.2em;
+  height: 3em;
+  color: $primary-text;
+  background-color: $secondary;
+  box-shadow: $shadow;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+
+  li {    
+    list-style: none;
+
+    a {
+      padding: 0.8em 1.2em;
+
+      &:link {
+        text-decoration: none;
+      }
+    
+      &:visited {
+        color: $primary-text;
+      }
+    
+      &:hover {
+        background-color: $secondary-dark;
+      }
+    }
+  }
+}

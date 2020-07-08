@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StoryService } from '../services/story.service';
+
 
 @Component({
   selector: 'hnc-main-view',
@@ -8,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MainViewComponent implements OnInit {
+  topStories: number[];
+  pages: number[][] = [];
 
-  constructor() { }
+  pagination: { page: number, pageSize: number } = {
+    page: 0,
+    pageSize: 100,
+  }
+
+  constructor(private storyService: StoryService) { }
 
   ngOnInit(): void {
+    this.storyService
+      .getTopStories()
+      .subscribe((data: number[]) => {
+        this.topStories = data;
+        this.cutToPages(this.topStories, this.pagination.pageSize);
+      });
+  }
+
+  cutToPages (list: number[], pageSize: number): void {
+    let tempList: number[][] = []; // Need this so I can detect change in pagination component.
+
+    for (let i = 0; i < list.length; i += pageSize) {
+      tempList.push(list.slice(i, i + pageSize));
+    }
+
+    this.pages = tempList;
+  }
+
+  onPageChange (pagination: { page: number, pageSize: number }): void {
+    this.pagination = pagination
+
+    this.cutToPages(this.topStories, this.pagination.pageSize);
   }
 }

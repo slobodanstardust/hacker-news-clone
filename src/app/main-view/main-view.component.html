@@ -1,1 +1,5 @@
-<p>main-view works!</p>
+<div class="flex-container">
+  <hnc-story-preview *ngFor="let storyId of pages[pagination.page]; index as i" [storyId]="storyId" [storyIndex]="i" [pagination]="pagination"></hnc-story-preview>
+  <hnc-story-preview [storyId]="23733750"></hnc-story-preview>
+  <hnc-pagination [pagination]="pagination" [pages]="pages" (pageChange)="onPageChange($event)"></hnc-pagination>
+</div>

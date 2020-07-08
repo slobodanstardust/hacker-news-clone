@@ -6,16 +6,15 @@ import { Story } from '../models/story';
 
 
 @Component({
-  selector: 'hnc-comments',
-  templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  selector: 'hnc-text-story',
+  templateUrl: './text-story.component.html',
+  styleUrls: ['./text-story.component.scss']
 })
 
-export class CommentsComponent implements OnInit {
+export class TextStoryComponent implements OnInit {
   storyId: number;
   story: Story;
   storyTimeSince: string;
-  author: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,18 +22,16 @@ export class CommentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCommetnId()
-
+    this.getStoryId();
     this.storyService
       .getStory(this.storyId)
       .subscribe((data: Story) => {
         this.story = data;
-        this.author = data.userAuthor;
         this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
-      });
+      })
   }
 
-  getCommetnId (): void {
+  getStoryId (): void {
     this.activatedRoute.params
       .subscribe((data: any) => {
         this.storyId = Number(data.id);
