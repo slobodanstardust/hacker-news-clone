@@ -3,12 +3,12 @@ import { StoryService } from '../services/story.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { Story } from '../models/story';
+import { TimeService } from '../services/time.service';
 
 
 @Component({
   selector: 'hnc-comments',
-  templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  templateUrl: './comments.component.html'
 })
 
 export class CommentsComponent implements OnInit {
@@ -19,7 +19,8 @@ export class CommentsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private storyService: StoryService
+    private storyService: StoryService,
+    private timeService: TimeService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class CommentsComponent implements OnInit {
       .subscribe((data: Story) => {
         this.story = data;
         this.author = data.userAuthor;
-        this.storyTimeSince = this.storyService.calculateTimeSince(data.time);
+        this.storyTimeSince = this.timeService.calculateTimeSince(data.time);
       });
   }
 

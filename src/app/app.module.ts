@@ -8,10 +8,8 @@ import { AppComponent } from './app.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { StoryPreviewComponent } from './story-preview/story-preview.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { TopStoriesComponent } from './top-stories/top-stories.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { StoryComponent } from './story/story.component';
 import { TextStoryComponent } from './text-story/text-story.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CommentViewComponent } from './comment-view/comment-view.component';
@@ -23,10 +21,8 @@ import { CommentViewComponent } from './comment-view/comment-view.component';
     MainViewComponent,
     StoryPreviewComponent,
     NavigationComponent,
-    TopStoriesComponent,
     CommentsComponent,
     PageNotFoundComponent,
-    StoryComponent,
     TextStoryComponent,
     PaginationComponent,
     CommentViewComponent

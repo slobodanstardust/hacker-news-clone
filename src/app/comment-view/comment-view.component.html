@@ -1,10 +1,10 @@
 <div [ngClass]="{'edge': !isResponse}"></div>
 
 <div [ngClass]="isResponse ? 'response-view' : 'comment-view'">
-  <div class="comment-header">
-    <small>response to: <span class="response-to">{{ responseTo }}</span></small>&nbsp;|
-    <small>by <span class="author">{{ comment?.userAuthor }}</span></small>&nbsp;|
-    <small>{{ commentTimeSince }}</small>
+  <div class="comment-header info-bar">
+    <div class="info-tag">response to: <span class="response-to">{{ responseTo }}</span></div>
+    <div class="info-tag">by <span class="author">{{ comment?.userAuthor }}</span></div>
+    <div class="info-tag">{{ commentTimeSince }}</div>
   </div>
 
   <div [ngClass]="!isExpanded ? 'short-view': 'full-view'" [innerHtml]="comment?.text"></div>

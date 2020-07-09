@@ -4,7 +4,6 @@
 .pagination {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-bottom: 3em;
   margin-top: 0.6em;
 }
@@ -60,6 +59,7 @@
 
 .size-picker {
   display: flex;
+  margin-left: auto;
   margin-top: 0.4em;
 
   &-label {

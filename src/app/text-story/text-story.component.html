@@ -1,11 +1,14 @@
 <div class="flex-container">
   <div class="story-preview">
     <h3>{{ story?.title }}</h3>
-    <small>{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</small>&nbsp;|
-    <small>By {{ story?.userAuthor }}</small>&nbsp;|
-    <small>Time: {{ storyTimeSince }}</small>&nbsp;|
-    <small><a routerLink="/comments/{{ story?.id }}">Comments: {{ story?.commentCount }}</a></small>&nbsp;|
-    <small>Type: {{ story?.type }}</small>
+
+    <div class="info-bar">
+      <div class="info-tag">{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</div>
+      <div class="info-tag">By {{ story?.userAuthor }}</div>
+      <div class="info-tag">Time: {{ storyTimeSince }}</div>
+      <div class="info-tag"><a routerLink="/comments/{{ story?.id }}">Comments: {{ story?.commentCount }}</a></div>
+      <div class="info-tag">Type: {{ story?.type }}</div>
+    </div>
   </div>
   
   <div class="text-story" [innerHtml]="story?.text"></div>

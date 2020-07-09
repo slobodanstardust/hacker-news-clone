@@ -7,9 +7,11 @@
       <h3><a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></h3>
     </ng-template>
 
-    <small>{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</small>&nbsp;|
-    <small>By {{ story?.userAuthor }}</small>&nbsp;|
-    <small>Time: {{ storyTimeSince }}</small>
+    <div class="info-bar">
+      <div class="info-tag">{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</div>
+      <div class="info-tag">By {{ story?.userAuthor }}</div>
+      <div class="info-tag">Time: {{ storyTimeSince }}</div>
+    </div>
   </div>
   
   <hnc-comment-view *ngFor="let comment of story?.rankedCommentList" [commentId]="comment" [responseTo]="author" [isResponse]="false"></hnc-comment-view>

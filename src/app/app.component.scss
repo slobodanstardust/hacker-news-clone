@@ -1,4 +1,11 @@
+@import '../global-styles/main.scss';
+
+
 .wrapper {
   width: 60vw;
   margin: auto;
+
+  @include responsive(medium-size) {
+    width: 80vw;
+  }
 }

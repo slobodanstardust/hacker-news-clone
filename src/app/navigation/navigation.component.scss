@@ -3,44 +3,58 @@
 
 nav {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 2em;
-  padding: 0 1.2em;
-  height: 3em;
   color: $primary-text;
   background-color: $secondary;
   box-shadow: $shadow;
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 700;
   text-transform: uppercase;
+
+  @include responsive(very-small-size) {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .links {
   display: flex;
-  align-items: center;
+  margin-left: auto;
+
+  @include responsive(very-small-size) {
+    flex-direction: column;
+    flex-basis: 100%;
+  }
 
   li {    
     list-style: none;
+  }
+}
 
-    a {
-      padding: 0.8em 1.2em;
+.nav-link {
+  display: block;
+  padding: 0.6em 1em;
+      
+  @include responsive(very-small-size) {
+    flex-basis: 100%;
+    text-align: center;
+  }
 
-      &:link {
-        text-decoration: none;
-      }
-    
-      &:visited {
-        color: $primary-text;
-      }
-    
-      &:hover {
-        background-color: $secondary-dark;
-      }
-    }
+  &:link {
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: $primary-text;
+  }
+
+  &:hover {
+    background-color: none;
   }
 }

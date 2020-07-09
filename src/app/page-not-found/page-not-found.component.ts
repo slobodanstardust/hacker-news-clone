@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'hnc-page-not-found',
-  templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.scss']
+  template: `
+    <h1>Sorry, I can't find this page...</h1>
+  `
 })
 
 export class PageNotFoundComponent implements OnInit {

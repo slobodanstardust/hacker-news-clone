@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { StoryService } from '../services/story.service';
 import { Comment } from '../models/comment';
+import { TimeService } from '../services/time.service';
 
 
 @Component({
@@ -23,14 +24,17 @@ export class CommentViewComponent implements OnInit {
   isClicked: boolean = false;
   isExpanded: boolean = false;
 
-  constructor(private storyService: StoryService) { }
+  constructor(
+    private storyService: StoryService,
+    private timeService: TimeService
+  ) { }
 
   ngOnInit(): void {
     this.storyService
       .getComment(this.commentId)
       .subscribe((data: Comment) => {
         this.comment = data;
-        this.commentTimeSince = this.storyService.calculateTimeSince(data.time);
+        this.commentTimeSince = this.timeService.calculateTimeSince(data.time);
         this.author = data.userAuthor;
       });
   }

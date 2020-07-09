@@ -1,32 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StoryService } from '../services/story.service';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 
 @Component({
   selector: 'hnc-main-view',
-  templateUrl: './main-view.component.html',
-  styleUrls: ['./main-view.component.scss']
+  templateUrl: './main-view.component.html'
 })
 
 export class MainViewComponent implements OnInit {
-  topStories: number[];
+  stories: number[];
   pages: number[][] = [];
+  urlPath: string;
 
   pagination: { page: number, pageSize: number } = {
     page: 0,
     pageSize: 100,
   }
 
-  constructor(private storyService: StoryService) { }
+  constructor(
+    private storyService: StoryService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.storyService
-      .getTopStories()
-      .subscribe((data: number[]) => {
-        this.topStories = data;
-        this.cutToPages(this.topStories, this.pagination.pageSize);
-      });
+    this.urlPath = this.activatedRoute.snapshot.url[0].path;
+
+    if (this.urlPath === 'home') {
+      this.storyService
+        .getTopStories()
+        .subscribe((data: number[]) => {
+          this.stories = data;
+          this.cutToPages(this.stories, this.pagination.pageSize);
+        });
+    } else if (this.urlPath === 'new') {
+      this.storyService
+        .getNewStories()
+        .subscribe((data: number[]) => {
+          this.stories = data;
+          this.cutToPages(this.stories, this.pagination.pageSize);
+        });
+    }
   }
 
   cutToPages (list: number[], pageSize: number): void {
@@ -42,6 +57,6 @@ export class MainViewComponent implements OnInit {
   onPageChange (pagination: { page: number, pageSize: number }): void {
     this.pagination = pagination
 
-    this.cutToPages(this.topStories, this.pagination.pageSize);
+    this.cutToPages(this.stories, this.pagination.pageSize);
   }
 }

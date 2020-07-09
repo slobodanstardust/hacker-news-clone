@@ -8,6 +8,10 @@
 :root {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+
+  @include responsive(extra-small-size) {
+    font-size: 12px;
+  }
 }
 
 body {
@@ -48,6 +52,10 @@ a {
   background-color: $primary;
   color: $primary-text;
   box-shadow: $shadow;
+
+  @include responsive(very-small-size) {
+    padding: 1em 1.5em;
+  }
 }
 
 .edge {
@@ -57,4 +65,25 @@ a {
 
 .active-path {
   background-color: $secondary-dark;
+}
+
+.info-bar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.48em;
+}
+
+.info-tag {
+  font-size: 0.8em;
+  padding: 0.1em 0.6em;
+  margin-bottom: 0.3em;
+  border-right: 1px solid $primary-text;
+
+  &:last-child {
+    border-right: none;
+  }
+  
+  @include responsive(small-size) {
+    border: none;
+  }
 }
