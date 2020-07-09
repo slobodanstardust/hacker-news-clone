@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Story } from '../models/story';
-import { StoryService } from '../services/story.service';
-import { TimeService } from '../services/time.service';
+import { Story } from '../../core/models/story'
+import { StoryService } from '../../core/services/story.service';
+import { TimeService } from '../../core/services/time.service';
 
 
 @Component({

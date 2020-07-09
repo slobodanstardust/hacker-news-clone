@@ -11,9 +11,8 @@ export class TimeService {
 
   calculateTimeSince (time: number): string {
     const timeNow: number = new Date().getTime();
-    const temp: Date = new Date(time * 1000);
-    const timeOfStory: number = new Date(temp).getTime();
-    const timeDiffernce: number = timeNow - timeOfStory;
+    const timeOfStory: number = time * 1000;
+    const timeDiffernce: number = (timeNow - timeOfStory) / 1000;
 
     const yearInSeconds: number = 31536000;
     const monthInSeconds: number = 2592000;

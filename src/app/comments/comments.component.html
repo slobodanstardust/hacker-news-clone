@@ -14,5 +14,11 @@
     </div>
   </div>
   
-  <hnc-comment-view *ngFor="let comment of story?.rankedCommentList" [commentId]="comment" [responseTo]="author" [isResponse]="false"></hnc-comment-view>
+  <hnc-comment-view *ngFor="let comment of story?.rankedCommentList"
+    [commentId]="comment"
+    [responseTo]="author"
+    [isResponse]="false">
+  </hnc-comment-view>
+
+  <hnc-scroll-button></hnc-scroll-button>
 </div>

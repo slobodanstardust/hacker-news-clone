@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { StoryService } from '../services/story.service';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
+import { StoryService } from '../core/services/story.service';
 
 
 @Component({
-  selector: 'hnc-main-view',
-  templateUrl: './main-view.component.html'
+  selector: 'hnc-stories',
+  templateUrl: './stories.component.html'
 })
 
-export class MainViewComponent implements OnInit {
+export class StoriesComponent implements OnInit {
   stories: number[];
   pages: number[][] = [];
   urlPath: string;

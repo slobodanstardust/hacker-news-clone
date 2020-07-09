@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { StoryService } from '../services/story.service';
+import { StoryService } from '../core/services/story.service';
 import { ActivatedRoute } from '@angular/router';
 
-import { Story } from '../models/story';
-import { TimeService } from '../services/time.service';
+import { Story } from '../core/models/story';
+import { TimeService } from '../core/services/time.service';
 
 
 @Component({

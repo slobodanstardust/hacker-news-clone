@@ -15,6 +15,10 @@
   </div>
   
   <div *ngIf="isClicked">
-    <hnc-comment-view *ngFor="let response of responseList" [commentId]="response" [responseTo]="author" [isResponse]="true"></hnc-comment-view>
+    <hnc-comment-view *ngFor="let response of responseList"
+      [commentId]="response"
+      [responseTo]="author"
+      [isResponse]="true">
+    </hnc-comment-view>
   </div>
 </div>

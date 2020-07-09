@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MainViewComponent } from './main-view/main-view.component';
+import { StoriesComponent } from './stories/stories.component';
+import { TextStoryComponent } from './stories/text-story/text-story.component';
 import { CommentsComponent } from './comments/comments.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TextStoryComponent } from './text-story/text-story.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
   {
     path: 'home',
-    component: MainViewComponent
+    component: StoriesComponent
   },
   {
     path: 'new',
-    component: MainViewComponent
+    component: StoriesComponent
   },
   {
     path: 'comments/:id',
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: MainViewComponent
+    component: StoriesComponent
   },
   {
     path: '**',

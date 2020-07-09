@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { StoryService } from '../services/story.service';
-import { Comment } from '../models/comment';
-import { TimeService } from '../services/time.service';
+import { StoryService } from '../../core/services/story.service';
+import { Comment } from '../../core/models/comment';
+import { TimeService } from '../../core/services/time.service';
 
 
 @Component({

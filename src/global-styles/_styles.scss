@@ -14,9 +14,14 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $primary-dark;
   padding-top: 2em;
+  padding-bottom: 4em;
 }
 
 h3 {

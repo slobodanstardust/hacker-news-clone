@@ -14,7 +14,9 @@
   
   <div class="size-picker">
     <div class="size-picker-label">page size</div>
-    <div [ngClass]="{'size-option': true, 'size-option-selected': option === sizeOption}" *ngFor="let option of [10, 50, 100]" (click)="onPageSizeChange(option)">{{ option }}</div>
+    <div [ngClass]="{'size-option': true, 'size-option-selected': option === sizeOption}"
+      *ngFor="let option of [10, 50, 100]" (click)="onPageSizeChange(option)">{{ option }}
+    </div>
   </div>
 </div>
 
