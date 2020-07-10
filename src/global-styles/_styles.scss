@@ -57,15 +57,11 @@ a {
   background-color: $primary;
   color: $primary-text;
   box-shadow: $shadow;
+  border-top: 1px solid $primary-light;
 
   @include responsive(very-small-size) {
     padding: 1em 1.5em;
   }
-}
-
-.edge {
-  height: 2px;
-  background-color: $primary-text;
 }
 
 .active-path {

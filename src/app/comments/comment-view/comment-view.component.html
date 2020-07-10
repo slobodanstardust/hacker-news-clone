@@ -1,5 +1,3 @@
-<div [ngClass]="{'edge': !isResponse}"></div>
-
 <div [ngClass]="isResponse ? 'response-view' : 'comment-view'">
   <div class="comment-header info-bar">
     <div class="info-tag">response to: <span class="response-to">{{ responseTo }}</span></div>
