@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { Story } from '../models/story';
 import { Comment } from '../models/comment';
@@ -45,5 +45,14 @@ export class StoryService {
     return this.httpClient
       .get(`${BASE_URL}/item/${commentId}.json`)
       .pipe(map((data: any) => new Comment(data)));
+  }
+
+  getStoriesData (storyIds: number[]): Observable<Story[]> {
+    const storyCalls = storyIds.map((id: number) => this.httpClient.get(`${BASE_URL}/item/${id}.json`));
+
+    return forkJoin(...storyCalls)
+      .pipe(map((data: any) => {
+        return data.map((item: any) => new Story(item));
+      }));
   }
 }
