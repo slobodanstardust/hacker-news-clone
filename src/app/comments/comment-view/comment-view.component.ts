@@ -40,12 +40,16 @@ export class CommentViewComponent implements OnInit {
   }
 
   loadResponses (commentId: number): void {
-    this.storyService
-      .getComment(commentId)
-      .subscribe((data: Comment) => {
-        this.responseList = data.rankedCommentList;
-        this.isClicked = true;
-      })
+    if (!this.isClicked) {
+      this.storyService
+        .getComment(commentId)
+        .subscribe((data: Comment) => {
+          this.responseList = data.rankedCommentList;
+          this.isClicked = true;
+        })
+    } else {
+      this.isClicked = false;
+    }
   }
 
   toggleView(): void {

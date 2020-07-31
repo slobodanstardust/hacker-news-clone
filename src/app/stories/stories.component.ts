@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { StoryService } from '../core/services/story.service';
+import { PageCutterService } from '../core/services/page-cutter.service';
 import { Story } from '../core/models/story';
 
 
@@ -11,60 +12,69 @@ import { Story } from '../core/models/story';
 })
 
 export class StoriesComponent implements OnInit {
-    stories: number[];
-    pages: number[][] = [];
-    storyPageData: Story[] = [];
     urlPath: string;
 
-    pagination: { page: number, pageSize: number } = {
-        page: 0,
-        pageSize: 100,
-    }
+    storyIds: number[] = [];
+    pages: number[][] = [];
+    stories: Story[][] = [];
+
+    pageNumber: number = 0;
+    pageSize: number = 50;
 
     constructor(
+        private activatedRoute: ActivatedRoute,
         private storyService: StoryService,
-        private activatedRoute: ActivatedRoute
+        private pageCutter: PageCutterService
     ) { }
 
     ngOnInit(): void {
         this.urlPath = this.activatedRoute.snapshot.url[0].path;
 
-        if (this.urlPath === 'home') {
+        if (this.urlPath === 'home') { // If it acts as a home page.
             this.storyService
                 .getTopStories()
                 .subscribe((data: number[]) => {
-                    this.stories = data;
-                    this.cutToPages(this.stories, this.pagination.pageSize);
+                    this.storyIds = data;
+                    this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
 
                     this.storyService
-                        .getStoriesData(this.pages[this.pagination.page])
-                        .subscribe((data: Story[]) => console.log(data));
+                        .getStoriesData(this.pages[this.pageNumber])
+                        .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
                 });
-        } else if (this.urlPath === 'new') {
+        } else if (this.urlPath === 'new') { // If it acts as a 'new' page.
             this.storyService
                 .getNewStories()
                 .subscribe((data: number[]) => {
-                    this.stories = data;
-                    this.cutToPages(this.stories, this.pagination.pageSize);
+                    this.storyIds = data;
+                    this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
+
+                    this.storyService
+                        .getStoriesData(this.pages[this.pageNumber])
+                        .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
                 });
         }
     }
 
-    cutToPages(list: number[], pageSize: number): void {
-        let tempList: number[][] = []; // Need this so I can detect change in pagination component.
+    onPageChange(pageNumber: number): void {
+        this.pageNumber = pageNumber;
 
-        // It takes an array of IDs and cuts it into arrays with 'pageSize' number of elements.
-        // Then it group these new smaller arrays into one.
-        for (let i = 0; i < list.length; i += pageSize) {
-            tempList.push(list.slice(i, i + pageSize));
+        if (!this.stories[pageNumber]) {
+            this.storyService
+                .getStoriesData(this.pages[this.pageNumber])
+                .subscribe((data: Story[]) => this.stories[pageNumber] = data);
         }
-
-        this.pages = tempList;
     }
 
-    onPageChange(pagination: { page: number, pageSize: number }): void {
-        this.pagination = pagination
+    onPageSizeChange (pageSize: number): void {
+        this.stories = [];
+        this.pageNumber = 0;
+        this.pageSize = pageSize;
 
-        this.cutToPages(this.stories, this.pagination.pageSize);
+        this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
+        console.log(this.pages[this.pageNumber])
+
+        this.storyService
+            .getStoriesData(this.pages[this.pageNumber])
+            .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
     }
 }

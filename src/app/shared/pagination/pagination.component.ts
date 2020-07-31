@@ -8,20 +8,17 @@ import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angu
 })
 
 export class PaginationComponent implements OnInit, OnChanges {
-  @Input () pagination: { page: number, pageSize: number };
+  @Input () pageNumber: number;
+  @Input () pageSize: number;
   @Input () pages: number[][];
-  @Output () pageChange = new EventEmitter<{ page: number, pageSize: number }>();
-
-  paginationChanges: { page: number, pageSize: number } = {
-    page: 0,
-    pageSize: 100
-  };
+  @Output () pageChange = new EventEmitter<number>();
+  @Output () pageSizeChange = new EventEmitter<number>();
 
   pageCount: number;
 
   previousDisabled: boolean;
   nextDisabled: boolean;
-  sizeOption: string = '100';
+  sizeOption: number = 50;
 
   constructor() { }
 
@@ -34,14 +31,14 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
   
   setPagination (): void {
-    this.pageCount = this.pages.length ;
+    this.pageCount = this.pages.length;
 
-    if (this.pagination.page === this.pageCount - 1) { // If it is on the last page.
+    if (this.pageNumber === this.pageCount - 1) { // If it is on the last page.
       this.nextDisabled = true;
     } else {
       this.nextDisabled = false;
     }
-    if (this.pagination.page === 0) { // If it is on the first page.
+    if (this.pageNumber === 0) { // If it is on the first page.
       this.previousDisabled = true;
     } else {
       this.previousDisabled = false;
@@ -49,24 +46,29 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   onPreviousPage (): void {
-    this.paginationChanges.page--;
-    this.pageChange.emit(this.paginationChanges);
+    this.pageNumber--;
+    this.pageChange.emit(this.pageNumber);
   }
 
   onNextPage (): void {
-    this.paginationChanges.page++;
-    this.pageChange.emit(this.paginationChanges);
+    this.pageNumber++;
+    this.pageChange.emit(this.pageNumber);
   }
 
-  onPageSelect (page: number): void {
-    this.paginationChanges.page = page;
-    this.pageChange.emit(this.paginationChanges);
+  onPageSelect (pageNumber: number): void {
+    this.pageChange.emit(pageNumber);
   }
 
-  onPageSizeChange (option: string): void {
+/*   onPageSizeChange (option: string): void {
     this.paginationChanges.page = 0;
     this.paginationChanges.pageSize = Number(option);
     this.pageChange.emit(this.paginationChanges);
     this.sizeOption = option;
+  } */
+
+  onPageSizeChange (pageSizeOption: string) {
+    this.pageSize = Number(pageSizeOption);
+    this.sizeOption = Number(pageSizeOption);
+    this.pageSizeChange.emit(this.pageSize);
   }
 }

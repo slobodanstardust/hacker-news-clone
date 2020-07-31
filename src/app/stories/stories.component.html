@@ -1,14 +1,17 @@
 <div class="flex-container">
-  <hnc-story-preview *ngFor="let storyId of pages[pagination.page]; index as i"
-    [storyId]="storyId"
+  <hnc-story-preview *ngFor="let story of stories[pageNumber]; index as i"
+    [story]="story"
     [storyIndex]="i"
-    [pagination]="pagination">
+    [pageNumber]="pageNumber"
+    [pageSize]="pageSize">
   </hnc-story-preview>
 
   <hnc-pagination
-    [pagination]="pagination"
+    [pageNumber]="pageNumber"
+    [pageSize]="pageSize"
     [pages]="pages"
-    (pageChange)="onPageChange($event)">
+    (pageChange)="onPageChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)">
   </hnc-pagination>
 
   <hnc-scroll-button></hnc-scroll-button>
