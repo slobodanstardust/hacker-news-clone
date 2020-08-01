@@ -23,6 +23,7 @@ export class CommentViewComponent implements OnInit {
 
   isClicked: boolean = false;
   isExpanded: boolean = false;
+  showToggleHidden: boolean;
 
   constructor(
     private storyService: StoryService,
@@ -52,7 +53,8 @@ export class CommentViewComponent implements OnInit {
     }
   }
 
-  toggleView(): void {
-    this.isExpanded = !this.isExpanded;
+  toggleView(state: string): void {
+    if (state === 'more') this.isExpanded = true;
+    else if (state === 'less') this.isExpanded = false;
   }
-}
+ }

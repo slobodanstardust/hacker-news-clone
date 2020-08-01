@@ -47,6 +47,14 @@
   min-height: 3em;
 }
 
+.toggleOff {
+  display: none;
+}
+
+.toggleHide {
+  visibility: hidden;
+}
+
 .comment-footer {
   display: flex;
   justify-content: space-between;
