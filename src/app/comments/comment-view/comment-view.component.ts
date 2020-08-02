@@ -6,55 +6,59 @@ import { TimeService } from '../../core/services/time.service';
 
 
 @Component({
-  selector: 'hnc-comment-view',
-  templateUrl: './comment-view.component.html',
-  styleUrls: ['./comment-view.component.scss']
+    selector: 'hnc-comment-view',
+    templateUrl: './comment-view.component.html',
+    styleUrls: ['./comment-view.component.scss']
 })
 
 export class CommentViewComponent implements OnInit {
-  @Input () commentId: number;
-  @Input () responseTo: string;
-  @Input () isResponse: boolean;
+    @Input() comment: Comment;
+    @Input() responseTo: string;
+    @Input() isResponse: boolean;
 
-  comment: Comment;
-  commentTimeSince: string;
-  responseList: number[];
-  author: string;
+    commentTimeSince: string;
+    author: string;
+    responseIds: number[] = [];
+    responses: Comment[] = [];
 
-  isClicked: boolean = false;
-  isExpanded: boolean = false;
-  showToggleHidden: boolean;
+    isClicked: boolean = false;
+    isExpanded: boolean = false;
+    showToggleHidden: boolean;
 
-  constructor(
-    private storyService: StoryService,
-    private timeService: TimeService
-  ) { }
+    constructor(
+        private storyService: StoryService,
+        private timeService: TimeService
+    ) { }
 
-  ngOnInit(): void {
-    this.storyService
-      .getComment(this.commentId)
-      .subscribe((data: Comment) => {
-        this.comment = data;
-        this.commentTimeSince = this.timeService.calculateTimeSince(data.time);
-        this.author = data.userAuthor;
-      });
-  }
-
-  loadResponses (commentId: number): void {
-    if (!this.isClicked) {
-      this.storyService
-        .getComment(commentId)
-        .subscribe((data: Comment) => {
-          this.responseList = data.rankedCommentList;
-          this.isClicked = true;
-        })
-    } else {
-      this.isClicked = false;
+    ngOnInit(): void {
+        this.commentTimeSince = this.timeService.calculateTimeSince(this.comment.time);
+        this.author = this.comment.userAuthor;
     }
-  }
 
-  toggleView(state: string): void {
-    if (state === 'more') this.isExpanded = true;
-    else if (state === 'less') this.isExpanded = false;
-  }
- }
+    loadResponses(commentId: number): void {
+        console.log(this.responses)
+        if (!this.isClicked) {
+            if (this.responses.length === 0) {
+                this.storyService
+                    .getComment(commentId)
+                    .subscribe((data: Comment) => {
+                        this.responseIds = data.rankedCommentList;
+
+                        this.storyService
+                            .getCommentsData(this.responseIds)
+                            .subscribe((data: Comment[]) => {
+                                this.responses = data;
+                                this.isClicked = true;
+                            })
+                    })
+            } else this.isClicked = true;
+        } else {
+            this.isClicked = false;
+        }
+    }
+
+    toggleView(state: string): void {
+        if (state === 'more') this.isExpanded = true;
+        else if (state === 'less') this.isExpanded = false;
+    }
+}

@@ -1,11 +1,11 @@
 <div [ngClass]="isResponse ? 'response-view' : 'comment-view'">
   <div class="comment-header info-bar">
     <div class="info-tag">response to: <span class="response-to">{{ responseTo }}</span></div>
-    <div class="info-tag">by <span class="author">{{ comment?.userAuthor }}</span></div>
+    <div class="info-tag">by <span class="author">{{ comment.userAuthor }}</span></div>
     <div class="info-tag">{{ commentTimeSince }}</div>
   </div>
 
-  <div #showMoreLess [ngClass]="!isExpanded ? 'short-view': 'full-view'" [innerHtml]="comment?.text"></div>
+  <div #showMoreLess [ngClass]="!isExpanded ? 'short-view': 'full-view'" [innerHtml]="comment.text"></div>
 
   <div class="comment-footer">
     <small
@@ -22,15 +22,16 @@
     </small>
     <small
         class="responses"
-        style="cursor:pointer"
-        (click)="loadResponses(comment?.id)">
-        {{ comment?.rankedCommentList.length > 0 ? (isClicked ? '&#x25b2;' : '&#x25bC;') : '' }} responses: {{ comment?.rankedCommentList.length }}
+        [ngClass]="{ 'disabled': comment.rankedCommentList.length === 0 }"
+        style="cursor: pointer"
+        (click)="loadResponses(comment.id)">
+        {{ comment.rankedCommentList.length > 0 ? (isClicked ? '&#x25b2;' : '&#x25bC;') : '' }} responses: {{ comment.rankedCommentList.length }}
     </small>
   </div>
   
   <div *ngIf="isClicked">
-    <hnc-comment-view *ngFor="let response of responseList"
-      [commentId]="response"
+    <hnc-comment-view *ngFor="let response of responses"
+      [comment]="response"
       [responseTo]="author"
       [isResponse]="true">
     </hnc-comment-view>

@@ -55,4 +55,13 @@ export class StoryService {
         return data.map((item: any) => new Story(item));
       }));
   }
+
+  getCommentsData (commentIds: number[]): Observable<Comment[]> {
+    const commentCalls = commentIds.map((id: number) => this.httpClient.get(`${BASE_URL}/item/${id}.json`));
+
+    return forkJoin(...commentCalls)
+      .pipe(map((data: any) => {
+        return data.map((item: any) => new Comment(item));
+      }));
+  }
 }

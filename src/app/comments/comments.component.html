@@ -14,8 +14,8 @@
     </div>
   </div>
   
-  <hnc-comment-view *ngFor="let comment of story?.rankedCommentList"
-    [commentId]="comment"
+  <hnc-comment-view *ngFor="let comment of comments"
+    [comment]="comment"
     [responseTo]="author"
     [isResponse]="false">
   </hnc-comment-view>
