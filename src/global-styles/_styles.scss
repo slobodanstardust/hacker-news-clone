@@ -63,6 +63,10 @@ a {
     }
 }
 
+.no-comments {
+    pointer-events: none;
+}
+
 .active-path {
     background-color: $secondary-dark;
 }
