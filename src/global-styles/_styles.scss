@@ -1,90 +1,89 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
 
-  @include responsive(extra-small-size) {
-    font-size: 12px;
-  }
+    @include responsive(extra-small-size) {
+        font-size: 12px;
+    }
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  background-color: $primary-dark;
-  padding-top: 2em;
-  padding-bottom: 4em;
+    background-color: $primary-dark;
+    padding-top: 2em;
+    padding-bottom: 4em;
 }
 
 h3 {
-  font-weight: 700;
-  margin-bottom: 0.4em;
+    font-weight: 700;
+    margin-bottom: 0.4em;
 }
 
 a {
 
-  &:link {
-    text-decoration: none;
-    color: $secondary-light;
-  }
+    &:link {
+        text-decoration: none;
+        color: $secondary-light;
+    }
 
-  &:visited {
-    color: $primary-text;
-  }
+    &:visited {
+        color: $primary-text;
+    }
 
-  &:hover {
-    color: $secondary;
-  }
+    &:hover {
+        color: $secondary;
+    }
 }
 
 .flex-container {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 // It's in the global styles because I need it in the comment-view component too.
 .story-preview {
-  margin-bottom: 1em;
-  padding: 1em 3em;
-  background-color: $primary;
-  color: $primary-text;
-  box-shadow: $shadow;
-  border-top: 1px solid $primary-light;
+    margin-bottom: 1em;
+    padding: 1em 3em;
+    background-color: $primary;
+    color: $primary-text;
+    box-shadow: $shadow;
+    border-top: 1px solid $primary-light;
 
-  @include responsive(very-small-size) {
-    padding: 1em 1.5em;
-  }
+    @include responsive(very-small-size) {
+        padding: 1em 1.5em;
+    }
 }
 
 .active-path {
-  background-color: $secondary-dark;
+    background-color: $secondary-dark;
 }
 
 .info-bar {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -0.48em;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -0.48em;
 }
 
 .info-tag {
-  font-size: 0.8em;
-  padding: 0.1em 0.6em;
-  margin-bottom: 0.3em;
-  border-right: 1px solid $primary-text;
+    font-size: 0.8em;
+    padding: 0.1em 0.6em;
+    margin-bottom: 0.3em;
+    border-right: 1px solid $primary-text;
 
-  &:last-child {
-    border-right: none;
-  }
-  
-  @include responsive(small-size) {
-    border: none;
-  }
+    &:last-child {
+        border-right: none;
+    }
+    
+    @include responsive(small-size) {
+        border: none;
+    }
 }

@@ -2,85 +2,85 @@
 
 
 .pagination {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1em;
-  margin-top: 0.6em;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    margin-top: 0.6em;
 }
 
 .page-picker {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 0.4em;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.4em;
 }
 
 .button {
-  margin-bottom: 0.4em;
-  padding: 0.5em 1em;;
-  color: $primary-text;
-  background-color: $secondary;
-  font-size: 0.8em;
-  cursor: pointer;
+    margin-bottom: 0.4em;
+    padding: 0.5em 1em;;
+    color: $primary-text;
+    background-color: $secondary;
+    font-size: 0.8em;
+    cursor: pointer;
 
-  &:first-child {
-    margin-right: 0.2em;
-  }
+    &:first-child {
+        margin-right: 0.2em;
+    }
 
-  &:last-child {
-    margin-left: 0.2em;
-  }
+    &:last-child {
+        margin-left: 0.2em;
+    }
 }
 
 .disabled {
-  pointer-events: none;
-  background-color: $primary;
+    pointer-events: none;
+    background-color: $primary;
 }
 
 .page-number {
-  margin: 0 0.2em 0.4em;
-  padding: 0.5em 1em;
-  background-color: $secondary;
-  color: $primary-text;
-  font-size: 0.8em;
-
-  &:first-of-type {
-    margin-left: 0.4em;
-  }
-
-  &-clickable {
-    cursor: pointer;
-    background-color: $primary-light;
-
-    &:hover {
-      background-color: $secondary;
-    }
-  }
-}
-
-.size-picker {
-  display: flex;
-  margin-left: auto;
-  margin-top: 0.4em;
-
-  &-label {
-    margin: 0 0.2em 0.4em 0;
+    margin: 0 0.2em 0.4em;
     padding: 0.5em 1em;
     background-color: $secondary;
     color: $primary-text;
     font-size: 0.8em;
-  }
+
+    &:first-of-type {
+        margin-left: 0.4em;
+    }
+
+    &-clickable {
+        cursor: pointer;
+        background-color: $primary-light;
+
+        &:hover {
+            background-color: $secondary;
+        }
+    }
+}
+
+.size-picker {
+    display: flex;
+    margin-left: auto;
+    margin-top: 0.4em;
+
+    &-label {
+        margin: 0 0.2em 0.4em 0;
+        padding: 0.5em 1em;
+        background-color: $secondary;
+        color: $primary-text;
+        font-size: 0.8em;
+    }
 }
 
 .size-option {
-  margin: 0 0.2em 0.4em;
-  padding: 0.5em 1em;
-  background-color: $primary-light;
-  color: $primary-text;
-  font-size: 0.8em;
-  cursor: pointer;
+    margin: 0 0.2em 0.4em;
+    padding: 0.5em 1em;
+    background-color: $primary-light;
+    color: $primary-text;
+    font-size: 0.8em;
+    cursor: pointer;
 
-  &-selected {
-    background-color: $secondary;
-    pointer-events: none;
-  }
+    &-selected {
+        background-color: $secondary;
+        pointer-events: none;
+    }
 }

@@ -2,33 +2,33 @@
 
 
 button {
-  display: none;
-  z-index: 99;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: $secondary;
-  color: $primary-text;
-  border-radius: 0;
-  padding: 0.5em 1em;
-  font-size: 1.2em;
+    display: none;
+    z-index: 99;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: $secondary;
+    color: $primary-text;
+    border-radius: 0;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
 
-  &:hover {
-    background-color: $secondary-dark;
-  }
-  
-  &:first-child {
-    margin-right: 0.5em;
-  }
+    &:hover {
+        background-color: $secondary-dark;
+    }
+    
+    &:first-child {
+        margin-right: 0.5em;
+    }
 }
 
 .show {
-  display: block;
+    display: block;
 }
 
 .scrolls {
-  display: flex;
-  position: fixed;
-  bottom: 2em;
-  right: 3em;
+    display: flex;
+    position: fixed;
+    bottom: 2em;
+    right: 3em;
 }
