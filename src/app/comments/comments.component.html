@@ -1,24 +1,27 @@
 <div class="flex-container">
-  <div class="edge"></div>
-  
-  <div class="story-preview">
-    <h3 *ngIf="story?.sourceUrl; else textStory"><a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a></h3>
-    <ng-template #textStory>
-      <h3><a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a></h3>
-    </ng-template>
+    <div class="story-preview">
+        <h3 *ngIf="story?.sourceUrl; else textStory">
+            <a [href]="story?.sourceUrl" target="_blank">{{ story?.title }}</a>
+        </h3>
+        <ng-template #textStory>
+            <h3>
+                <a routerLink="/story/{{ story?.id }}" target="_blank">{{ story?.title }}</a>
+            </h3>
+        </ng-template>
 
-    <div class="info-bar">
-      <div class="info-tag">{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</div>
-      <div class="info-tag">By {{ story?.userAuthor }}</div>
-      <div class="info-tag">Time: {{ storyTimeSince }}</div>
+        <div class="info-bar">
+            <div class="info-tag">{{ story?.score }} {{ story?.score === 1 ? 'point' : 'points' }}</div>
+            <div class="info-tag">By {{ story?.userAuthor }}</div>
+            <div class="info-tag">Time: {{ storyTimeSince }}</div>
+        </div>
     </div>
-  </div>
-  
-  <hnc-comment-view *ngFor="let comment of comments"
-    [comment]="comment"
-    [responseTo]="author"
-    [isResponse]="false">
-  </hnc-comment-view>
 
-  <hnc-scroll-button></hnc-scroll-button>
+    <hnc-comment-view
+        *ngFor="let comment of comments"
+        [comment]="comment"
+        [responseTo]="story?.userAuthor"
+        [isResponse]="false">
+    </hnc-comment-view>
+
+    <hnc-scroll-buttons></hnc-scroll-buttons>
 </div>

@@ -1,61 +1,77 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { SubscriptionLike } from 'rxjs';
 
 import { StoryService } from '../core/services/story.service';
 import { PageCutterService } from '../core/services/page-cutter.service';
 import { Story } from '../core/models/story';
 
 
-@Component({
+@Component ({
     selector: 'hnc-stories',
     templateUrl: './stories.component.html'
 })
 
-export class StoriesComponent implements OnInit {
+export class StoriesComponent implements OnInit, OnDestroy {
+    subscription: SubscriptionLike;
     urlPath: string;
 
-    storyIds: number[] = [];
+    storyIds: number[];
     pages: number[][] = [];
     stories: Story[][] = [];
 
     pageNumber: number = 0;
     pageSize: number = 50;
 
-    constructor(
+    constructor (
         private activatedRoute: ActivatedRoute,
         private storyService: StoryService,
         private pageCutter: PageCutterService
     ) { }
 
-    ngOnInit(): void {
+    ngOnInit (): void {
         this.urlPath = this.activatedRoute.snapshot.url[0].path;
 
+        this.loadStoryData();
+    }
+    
+    ngOnDestroy (): void {
+        this.subscription.unsubscribe();
+    }
+
+    loadStoryData (): void {
         if (this.urlPath === 'home') { // If it acts as a home page.
-            this.storyService
+            this.subscription = this.storyService
                 .getTopStories()
-                .subscribe((data: number[]) => {
-                    this.storyIds = data;
-                    this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
+                .pipe(
+                    switchMap((data: number[]) => {
+                        this.storyIds = data;
+                        this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
 
-                    this.storyService
-                        .getStoriesData(this.pages[this.pageNumber])
-                        .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
-                });
+                        return this.storyService
+                            .getStoriesData(this.pages[this.pageNumber]);
+                    })
+                )
+                .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
+
         } else if (this.urlPath === 'new') { // If it acts as a 'new' page.
-            this.storyService
+            this.subscription = this.storyService
                 .getNewStories()
-                .subscribe((data: number[]) => {
-                    this.storyIds = data;
-                    this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
+                .pipe(
+                    switchMap((data: number[]) => {
+                        this.storyIds = data;
+                        this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
 
-                    this.storyService
-                        .getStoriesData(this.pages[this.pageNumber])
-                        .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
-                });
+                        return this.storyService
+                            .getStoriesData(this.pages[this.pageNumber]);
+                    })
+                )
+                .subscribe((data: Story[]) => this.stories[this.pageNumber] = data);
         }
     }
 
-    onPageChange(pageNumber: number): void {
+    onPageChange (pageNumber: number): void {
         this.pageNumber = pageNumber;
 
         if (!this.stories[pageNumber]) {
@@ -71,7 +87,6 @@ export class StoriesComponent implements OnInit {
         this.pageSize = pageSize;
 
         this.pages = this.pageCutter.cutToPages(this.storyIds, this.pageSize);
-        console.log(this.pages[this.pageNumber])
 
         this.storyService
             .getStoriesData(this.pages[this.pageNumber])

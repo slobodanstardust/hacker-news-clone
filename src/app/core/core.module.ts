@@ -6,19 +6,19 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
-@NgModule({
-  declarations: [
-    NavigationComponent,
-    PageNotFoundComponent
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule
-  ],
-  exports: [
-    NavigationComponent,
-    PageNotFoundComponent
-  ]
+@NgModule ({
+    declarations: [
+        NavigationComponent,
+        PageNotFoundComponent
+    ],
+    imports: [
+        CommonModule,
+        AppRoutingModule
+    ],
+    exports: [
+        NavigationComponent,
+        PageNotFoundComponent
+    ]
 })
 
 export class CoreModule { }

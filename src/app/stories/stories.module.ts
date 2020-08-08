@@ -8,21 +8,21 @@ import { StoryPreviewComponent } from './story-preview/story-preview.component';
 import { TextStoryComponent } from './text-story/text-story.component';
 
 
-@NgModule({
-  declarations: [
-    StoriesComponent,
-    StoryPreviewComponent,
-    TextStoryComponent,
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    SharedModule
-  ],
-  exports: [
-    StoriesComponent,
-    TextStoryComponent
-  ]
+@NgModule ({
+    declarations: [
+        StoriesComponent,
+        StoryPreviewComponent,
+        TextStoryComponent,
+    ],
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        SharedModule
+    ],
+    exports: [
+        StoriesComponent,
+        TextStoryComponent
+    ]
 })
 
 export class StoriesModule { }

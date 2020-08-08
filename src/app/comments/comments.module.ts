@@ -7,19 +7,19 @@ import { CommentsComponent } from './comments.component';
 import { CommentViewComponent } from './comment-view/comment-view.component';
 
 
-@NgModule({
-  declarations: [
-    CommentsComponent,
-    CommentViewComponent
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    SharedModule
-  ],
-  exports: [
-    CommentsComponent
-  ]
+@NgModule ({
+    declarations: [
+        CommentsComponent,
+        CommentViewComponent
+    ],
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        SharedModule
+    ],
+    exports: [
+        CommentsComponent
+    ]
 })
 
 export class CommentsModule { }

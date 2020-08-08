@@ -1,15 +1,15 @@
 import  { Injectable } from '@angular/core';
 
 
-@Injectable({
+@Injectable ({
     providedIn: 'root'
 })
 
 export class PageCutterService {
 
-    constructor() { }
+    constructor () { }
 
-    cutToPages(list: number[], pageSize: number): number[][] {
+    cutToPages (list: number[], pageSize: number): number[][] {
         let pageList: number[][] = [];
 
         // It takes an array of IDs and cuts it into arrays with 'pageSize' number of elements.

@@ -8,40 +8,40 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
 
 
 const routes: Routes = [
-  {
-    path: 'home',
-    component: StoriesComponent
-  },
-  {
-    path: 'new',
-    component: StoriesComponent
-  },
-  {
-    path: 'comments/:id',
-    component: CommentsComponent
-  },
-  {
-    path: 'stories/:id',
-    component: TextStoryComponent
-  },
-  {
-    path: '',
-    redirectTo: '/home',    
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    component: StoriesComponent
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent // Wildcard route for a 404 page
-  }
+    {
+        path: 'home',
+        component: StoriesComponent
+    },
+    {
+        path: 'new',
+        component: StoriesComponent
+    },
+    {
+        path: 'comments/:id',
+        component: CommentsComponent
+    },
+    {
+        path: 'stories/:id',
+        component: TextStoryComponent
+    },
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
+    {
+        path: '**',
+        component: StoriesComponent
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent // Wildcard route for a 404 page
+    }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+@NgModule ({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

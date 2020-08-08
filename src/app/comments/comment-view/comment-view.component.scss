@@ -2,77 +2,78 @@
 
 
 .comment-view {
-  margin-bottom: 1em;
-  padding: 1em 3em;
-  background-color: $primary-light;
-  color: $primary-text;
-  box-shadow: $shadow;
+    margin-bottom: 1em;
+    padding: 1em 3em;
+    background-color: $primary-light;
+    color: $primary-text;
+    box-shadow: $shadow;
 
-  @include responsive(very-small-size) {
-    padding: 1em 1.5em;
-  }
+    @include responsive(very-small-size) {
+        padding: 1em 1.5em;
+    }
 }
 
 .response-view {
-  margin: 1.6em -3em -1em;
-  padding: 1em 3em;
-  background-color: $primary;
-  color: $primary-text;
+    margin: 1.6em -3em -1em;
+    padding: 1em 3em;
+    background-color: $primary;
+    color: $primary-text;
 
-  @include responsive(very-small-size) {
-    padding: 1em 1.5em;
-    margin: 1.6em -1.5em -1em;
-  }
+    @include responsive(very-small-size) {
+        padding: 1em 1.5em;
+        margin: 1.6em -1.5em -1em;
+    }
 }
 
 .comment-header {
-  margin-bottom: 0.6em;
+    margin-bottom: 0.6em;
 }
 
 .response-to {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .author {
-  font-weight: 700;
-  color: $secondary-light;
+    font-weight: 700;
+    color: $secondary-light;
 }
 
 .short-view {
-  height: 3em;
-  overflow: hidden;
+    height: 3em;
+    overflow: hidden;
 }
 
 .full-view {
-  min-height: 3em;
+    min-height: 3em;
 }
 
 .toggleOff {
-  display: none;
+    display: none;
 }
 
 .toggleHide {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .comment-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.6em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.6em;
   
-  .show-toggle {
-    cursor: pointer;
-  }
-
-  .responses {
-    color: $secondary-light;
-  
-    &:hover {
-      color: $secondary-dark;
+    .show-toggle {
+        cursor: pointer;
     }
-  }
+
+    .responses {
+        color: $secondary-light;
+        cursor: pointer;
+
+        &:hover {
+            color: $secondary-dark;
+        }
+    }
 }
 
 .disabled {
-  pointer-events: none;
+    pointer-events: none;
 }

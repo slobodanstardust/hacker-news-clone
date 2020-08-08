@@ -1,63 +1,57 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SubscriptionLike } from 'rxjs';
 
 import { StoryService } from '../../core/services/story.service';
 import { Comment } from '../../core/models/comment';
 import { TimeService } from '../../core/services/time.service';
 
 
-@Component({
+@Component ({
     selector: 'hnc-comment-view',
     templateUrl: './comment-view.component.html',
     styleUrls: ['./comment-view.component.scss']
 })
 
 export class CommentViewComponent implements OnInit {
-    @Input() comment: Comment;
-    @Input() responseTo: string;
-    @Input() isResponse: boolean;
+    subscription: SubscriptionLike;
+
+    @Input () comment: Comment;
+    @Input () responseTo: string;
+    @Input () isResponse: boolean;
 
     commentTimeSince: string;
-    author: string;
-    responseIds: number[] = [];
-    responses: Comment[] = [];
+    responses: Comment[];
 
     isClicked: boolean = false;
     isExpanded: boolean = false;
-    showToggleHidden: boolean;
 
-    constructor(
+    constructor (
         private storyService: StoryService,
         private timeService: TimeService
     ) { }
 
-    ngOnInit(): void {
+    ngOnInit (): void {
         this.commentTimeSince = this.timeService.calculateTimeSince(this.comment.time);
-        this.author = this.comment.userAuthor;
     }
 
-    loadResponses(commentId: number): void {
-        console.log(this.responses)
+    loadResponses (commentId: number): void {
         if (!this.isClicked) {
-            if (this.responses.length === 0) {
-                this.storyService
-                    .getComment(commentId)
-                    .subscribe((data: Comment) => {
-                        this.responseIds = data.rankedCommentList;
+            if (!this.responses) {
+                this.subscription = this.storyService
+                    .getCommentsData(this.comment.rankedCommentList)
+                    .subscribe((data: Comment[]) => {
+                        this.responses = data;
+                        this.isClicked = true;
 
-                        this.storyService
-                            .getCommentsData(this.responseIds)
-                            .subscribe((data: Comment[]) => {
-                                this.responses = data;
-                                this.isClicked = true;
-                            })
-                    })
+                        this.subscription.unsubscribe();
+                    })                
             } else this.isClicked = true;
         } else {
             this.isClicked = false;
         }
     }
 
-    toggleView(state: string): void {
+    toggleView (state: string): void {
         if (state === 'more') this.isExpanded = true;
         else if (state === 'less') this.isExpanded = false;
     }

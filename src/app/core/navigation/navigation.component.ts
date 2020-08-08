@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 
-@Component({
-  selector: 'hnc-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+@Component ({
+    selector: 'hnc-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss']
 })
 
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+    constructor () { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit (): void {
+    }
 }
